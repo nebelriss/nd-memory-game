@@ -42,7 +42,7 @@ function drawGameBoard(cards) {
   for (let card of cards) {
     // create li element and add card class
     const li = document.createElement('li');
-    li.className = classStrings.card + ' card';
+    li.classList.add('card');
 
     // create icon element and append to li
     const icon = document.createElement('i');
@@ -61,8 +61,7 @@ function drawGameBoard(cards) {
  * Game control functions
  */
 function gameController(e) {
-  e.target.classList.add('show');
-  e.target.classList.add('open');
+  e.target.className += (' show open');
 }
 
 
@@ -100,6 +99,7 @@ function createFullShuffledDeck(cards) {
 function initGame() {
   // TODO: init or reset game state
   updateMoves(0);
+  lastClickedCard = undefined;
 
   // duplicate array, combine it and shuffle it.
   const fulldeck = createFullShuffledDeck(cardFaces);
