@@ -14,6 +14,11 @@ const classStrings = {
   'fa': 'fa'
 }
 
+/*
+* game state vars
+*/
+let lastClickedCard;
+
 /* 
  * UI functions
  */
