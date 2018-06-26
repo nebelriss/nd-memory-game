@@ -60,6 +60,12 @@ function drawGameBoard(cards) {
 /*
  * Game control functions
  */
+function checkIfCardMatch(card1, card2) {
+  if (card1.innerHTML === card2.innerHTML) {
+    return true;
+  }
+  return false;
+}
 function gameController(e) {
   e.target.className += (' show open');
 }
