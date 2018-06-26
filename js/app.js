@@ -15,9 +15,10 @@ const classStrings = {
 }
 
 /*
-* game state vars
-*/
-let lastClickedCard;
+ * game state vars
+ */
+let lastSelectedCard = undefined;
+
 
 /* 
  * UI functions
@@ -78,7 +79,28 @@ function isMached(element) {
 }
 
 function gameController(e) {
-  e.target.className += (' show open');
+  if (!isMached(e.target) && lastSelectedCard !== e.target) {
+    e.target.className += (' show open');
+
+    if (lastSelectedCard === undefined) {
+      // set lastSelectedCard to current card
+      lastSelectedCard = e.target
+    } else {
+      if (!checkIfCardMatch(lastSelectedCard, e.target)) {
+
+        // if cards do not match, turn them face down.
+        e.target.classList.remove('show', 'open');
+        lastSelectedCard.classList.remove('show', 'open');
+      } else {
+        // if card match, add class match to them.
+        e.target.classList.add('match');
+        lastSelectedCard.classList.add('match');
+      }
+
+      // reset lastClickedCard
+      lastSelectedCard = undefined;
+    }
+  }
 }
 
 
@@ -116,7 +138,7 @@ function createFullShuffledDeck(cards) {
 function initGame() {
   // TODO: init or reset game state
   updateMoves(0);
-  lastClickedCard = undefined;
+  lastSelectedCard = undefined;
 
   // duplicate array, combine it and shuffle it.
   const fulldeck = createFullShuffledDeck(cardFaces);
