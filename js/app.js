@@ -66,6 +66,17 @@ function checkIfCardMatch(card1, card2) {
   }
   return false;
 }
+
+function isMached(element) {
+  // if card has class match return true, else false
+  for (let classItem of element.classList) {
+    if (classItem === "match") {
+      return true;
+    }
+  }
+  return false;
+}
+
 function gameController(e) {
   e.target.className += (' show open');
 }
