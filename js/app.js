@@ -23,8 +23,13 @@ let lastSelectedCard = undefined;
 /* 
  * UI functions
  */
-function updateMoves(num) {
-  document.querySelector(DOMStrings.moves).textContent = num;
+function resetMoves() {
+  document.querySelector(DOMStrings.moves).textContent = 0;
+}
+
+function addMove() {
+  const value = Number(document.querySelector(DOMStrings.moves).textContent)
+  document.querySelector(DOMStrings.moves).textContent = value + 1;
 }
 
 function clearGameBoard() {
@@ -99,6 +104,8 @@ function gameController(e) {
 
       // reset lastClickedCard
       lastSelectedCard = undefined;
+      // add move
+      addMove();
     }
   }
 }
@@ -137,7 +144,7 @@ function createFullShuffledDeck(cards) {
  */
 function initGame() {
   // TODO: init or reset game state
-  updateMoves(0);
+  resetMoves();
   lastSelectedCard = undefined;
 
   // duplicate array, combine it and shuffle it.
