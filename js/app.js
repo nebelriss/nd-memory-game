@@ -96,8 +96,11 @@ function gameController(e) {
       if (!checkIfCardMatch(lastSelectedCard, e.target)) {
 
         // if cards do not match, turn them face down.
-        e.target.classList.remove('show', 'open');
-        lastSelectedCard.classList.remove('show', 'open');
+        setTimeout(() => {
+          e.target.classList.remove('show', 'open');
+          lastSelectedCard.classList.remove('show', 'open');
+
+        }, 1000);
       } else {
         // if card match, add class match to them.
         e.target.classList.add('match');
