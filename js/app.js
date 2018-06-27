@@ -100,15 +100,18 @@ function gameController(e) {
           e.target.classList.remove('show', 'open');
           lastSelectedCard.classList.remove('show', 'open');
 
+          // reset lastClickedCard
+          lastSelectedCard = undefined;
         }, 1000);
       } else {
         // if card match, add class match to them.
         e.target.classList.add('match');
         lastSelectedCard.classList.add('match');
+
+        // reset lastClickedCard
+        lastSelectedCard = undefined;
       }
 
-      // reset lastClickedCard
-      lastSelectedCard = undefined;
       // add move
       addMove();
     }
