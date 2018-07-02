@@ -107,51 +107,53 @@ function isMached(element) {
 }
 
 function gameController(e) {
+  if (existsClass(e.target, 'card'))
+    {
+    // check if the selected card isn't a matched one, or the same card has been clicked twice.
+    if (!isMached(e.target) && lastSelectedCard !== e.target && !gameIsLocked) {
+      e.target.className += (' show open');
 
-  // check if the selected card isn't a matched one, or the same card has been clicked twice.
-  if (!isMached(e.target) && lastSelectedCard !== e.target && !gameIsLocked) {
-    e.target.className += (' show open');
+      if (lastSelectedCard === undefined) {
+        // set lastSelectedCard to current card
+        lastSelectedCard = e.target
+      } else {
+        if (!checkIfCardMatch(lastSelectedCard, e.target)) {
 
-    if (lastSelectedCard === undefined) {
-      // set lastSelectedCard to current card
-      lastSelectedCard = e.target
-    } else {
-      if (!checkIfCardMatch(lastSelectedCard, e.target)) {
+          // lock game board, so no interaction is possible while the animation is running
+          gameIsLocked = true;
 
-        // lock game board, so no interaction is possible while the animation is running
-        gameIsLocked = true;
+          // listener for animation end
+          e.target.addEventListener('animationend', function _listener() {
+            e.target.classList.remove('show', 'open', 'no-match');
+            lastSelectedCard.classList.remove('show', 'open', 'no-match');
 
-        // listener for animation end
-        e.target.addEventListener('animationend', function _listener() {
-          e.target.classList.remove('show', 'open', 'no-match');
-          lastSelectedCard.classList.remove('show', 'open', 'no-match');
+            // reset lastClickedCard
+            lastSelectedCard = undefined;
+            gameIsLocked = false;
+
+            // remove listener for animation
+            e.target.removeEventListener("animationend", _listener, true);
+          }, true);
+
+
+          // if cards do not match, turn them face down.
+          e.target.classList.add('no-match');
+          lastSelectedCard.classList.add('no-match');
+
+        } else {
+          // if card match, add class match to them.
+          e.target.classList.add('match');
+          lastSelectedCard.classList.add('match');
 
           // reset lastClickedCard
           lastSelectedCard = undefined;
-          gameIsLocked = false;
+        }
 
-          // remove listener for animation
-          e.target.removeEventListener("animationend", _listener, true);
-        }, true);
-
-
-        // if cards do not match, turn them face down.
-        e.target.classList.add('no-match');
-        lastSelectedCard.classList.add('no-match');
-
-      } else {
-        // if card match, add class match to them.
-        e.target.classList.add('match');
-        lastSelectedCard.classList.add('match');
-
-        // reset lastClickedCard
-        lastSelectedCard = undefined;
+        // add move
+        addMove();
       }
-
-      // add move
-      addMove();
+      isGameWon();
     }
-    isGameWon();
   }
 }
 
