@@ -66,9 +66,30 @@ function drawGameBoard(cards) {
 /*
  * Game control functions
  */
+function isGameWon() {
+  const deck = document.querySelector(DOMStrings.deck);
+
+  for (let card of deck.childNodes) {
+    if (!existsClass(card, 'match')) {
+      return false;
+    }
+  }
+  window.location = 'winner.html';
+}
+
 function checkIfCardMatch(card1, card2) {
   if (card1.innerHTML === card2.innerHTML) {
     return true;
+  }
+  return false;
+}
+
+function existsClass(element, className) {
+  // if card has class match return true, else false
+  for (let classItem of element.classList) {
+    if (classItem === className) {
+      return true;
+    }
   }
   return false;
 }
@@ -115,6 +136,7 @@ function gameController(e) {
       // add move
       addMove();
     }
+    isGameWon();
   }
 }
 
