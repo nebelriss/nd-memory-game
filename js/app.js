@@ -107,6 +107,7 @@ function isMached(element) {
 }
 
 function gameController(e) {
+  // check if event is from a card
   if (existsClass(e.target, 'card'))
     {
     // check if the selected card isn't a matched one, or the same card has been clicked twice.
