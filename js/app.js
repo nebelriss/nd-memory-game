@@ -66,6 +66,7 @@ function drawGameBoard(cards) {
 /*
  * Game control functions
  */
+
 function checkIfCardMatch(card1, card2) {
   if (card1.innerHTML === card2.innerHTML) {
     return true;
@@ -95,14 +96,26 @@ function gameController(e) {
     } else {
       if (!checkIfCardMatch(lastSelectedCard, e.target)) {
 
-        // if cards do not match, turn them face down.
-        setTimeout(() => {
-          e.target.classList.remove('show', 'open');
-          lastSelectedCard.classList.remove('show', 'open');
+        // lock game board, so no interaction is possible while the animation is running
+        gameIsLocked = true;
+
+        // listener for animation end
+        e.target.addEventListener('animationend', function _listener() {
+          e.target.classList.remove('show', 'open', 'no-match');
+          lastSelectedCard.classList.remove('show', 'open', 'no-match');
 
           // reset lastClickedCard
           lastSelectedCard = undefined;
-        }, 1000);
+
+          // remove listener for animation
+          e.target.removeEventListener("animationend", _listener, true);
+        }, true);
+
+
+        // if cards do not match, turn them face down.
+        e.target.classList.add('no-match');
+        lastSelectedCard.classList.add('no-match');
+
       } else {
         // if card match, add class match to them.
         e.target.classList.add('match');
