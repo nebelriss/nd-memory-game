@@ -83,6 +83,9 @@ h1 {
   font-size: 33px;
 }
 
+.deck .card.no-match {
+  background: red;
+}
 
 /*
  * Styles for the Score Panel
@@ -115,10 +118,6 @@ h1 {
 /*
  * Styles for Animation
  */
-
-.deck .card.no-match {
-  background: red;
-}
 
 .no-match {
   animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
