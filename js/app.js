@@ -18,6 +18,7 @@ const classStrings = {
  * game state vars
  */
 let lastSelectedCard = undefined;
+let gameIsLocked = false;
 
 
 /* 
@@ -87,7 +88,7 @@ function isMached(element) {
 function gameController(e) {
 
   // check if the selected card isn't a matched one, or the same card has been clicked twice.
-  if (!isMached(e.target) && lastSelectedCard !== e.target) {
+  if (!isMached(e.target) && lastSelectedCard !== e.target && !gameIsLocked) {
     e.target.className += (' show open');
 
     if (lastSelectedCard === undefined) {
@@ -106,6 +107,7 @@ function gameController(e) {
 
           // reset lastClickedCard
           lastSelectedCard = undefined;
+          gameIsLocked = false;
 
           // remove listener for animation
           e.target.removeEventListener("animationend", _listener, true);
