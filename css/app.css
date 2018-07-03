@@ -114,6 +114,28 @@ h1 {
   cursor: pointer;
 }
 
+/*
+ * Styles for winning page
+ */
+
+.winner {
+  margin-top: 5em;
+}
+
+.fa-thumbs-up {
+  font-size: 5em;
+  color: #36c936b9;
+}
+
+.restart {
+  margin-top: 2em;
+}
+
+.restart a {
+  color: #000;
+  text-decoration: none;
+}
+
 
 /*
  * Styles for Animation
