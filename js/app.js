@@ -31,8 +31,33 @@ function resetMoves() {
 }
 
 function addMove() {
-  const value = Number(document.querySelector(DOMStrings.moves).textContent)
-  document.querySelector(DOMStrings.moves).textContent = value + 1;
+  const moves = document.querySelector(DOMStrings.moves);
+  const value = Number(moves.textContent)
+
+  const newValue = value + 1;
+  moves.textContent = newValue;
+  console.log(newValue);
+
+  // remove last star
+  if (newValue === 10 || newValue === 15 || newValue === 20) {
+    removeLastStar();
+  }
+}
+
+function removeLastStar() {
+  const lastStar = document.querySelectorAll(DOMStrings.star);
+
+  if (lastStar.length != 0) {
+    lastStar[lastStar.length - 1].className += '-o';
+  }
+}
+
+function resetStars() {
+  const emptyStars = document.querySelectorAll(DOMStrings.emptyStar);
+  for (let star of emptyStars) {
+    star.classList.remove('fa-star-o');
+    star.classList.add('fa-star');
+  }
 }
 
 function clearGameBoard() {
@@ -195,6 +220,7 @@ function createFullShuffledDeck(cards) {
 function initGame() {
   // init or reset game state
   resetMoves();
+  resetStars();
   lastSelectedCard = undefined;
 
   // duplicate array, combine it and shuffle it.
