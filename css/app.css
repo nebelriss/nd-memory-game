@@ -81,6 +81,7 @@ h1 {
   cursor: default;
   background: #02ccba;
   font-size: 33px;
+  animation: ball 0.9s;
 }
 
 .deck .card.no-match {
@@ -167,5 +168,15 @@ h1 {
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes ball {
+  0%,
+  100% {
+    border-radius: 8px;
+  }
+  50% {
+    border-radius: 75px;
   }
 }
