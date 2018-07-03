@@ -34,6 +34,16 @@ h1 {
   font-weight: 300;
 }
 
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  text-align: center;
+}
+
+h3 span {
+  font-weight: 600;
+}
+
 
 /*
  * Styles for the deck of cards
@@ -131,13 +141,17 @@ h1 {
   color: #36c936b9;
 }
 
-.restart {
+.restart-btn {
   margin-top: 2em;
 }
 
-.restart a {
+.restart-btn a {
   color: #000;
   text-decoration: none;
+}
+
+.restart:hover, .restart-btn a:hover {
+  color: #36c936b9;
 }
 
 

@@ -97,13 +97,15 @@ function drawGameBoard(cards) {
 
 function isGameWon() {
   const deck = document.querySelector(DOMStrings.deck);
+  const moves = document.querySelector(DOMStrings.moves).textContent;
 
   for (let card of deck.childNodes) {
     if (!existsClass(card, 'match')) {
       return false;
     }
   }
-  window.location = 'winner.html';
+
+  window.location = 'winner.html?moves=' + moves;
 }
 
 function checkIfCardMatch(card1, card2) {
