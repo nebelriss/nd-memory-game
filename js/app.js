@@ -6,7 +6,9 @@ const cardFaces = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf',
 const DOMStrings = {
   'deck': '.deck',
   'moves': '.moves',
-  'restart': '.restart'
+  'restart': '.restart',
+  'star': '.fa-star',
+  'emptyStar': '.fa-star-o'
 }
 
 const classStrings = {
