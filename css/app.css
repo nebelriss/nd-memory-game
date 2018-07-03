@@ -74,6 +74,7 @@ h1 {
 }
 
 .deck .card.show {
+  transform: rotateY(0);
   font-size: 33px;
 }
 
