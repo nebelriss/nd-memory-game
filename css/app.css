@@ -84,8 +84,9 @@ h1 {
 }
 
 .deck .card.no-match {
-  background: red;
+  background: #ff0000;
 }
+
 
 /*
  * Styles for the Score Panel
