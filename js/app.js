@@ -131,22 +131,12 @@ function existsClass(element, className) {
   return false;
 }
 
-function isMached(element) {
-  // if card has class match return true, else false
-  for (let classItem of element.classList) {
-    if (classItem === classStrings.match) {
-      return true;
-    }
-  }
-  return false;
-}
-
 function gameController(e) {
   // check if event is from a card
   if (existsClass(e.target, classStrings.card))
     {
     // check if the selected card isn't a matched one, or the same card has been clicked twice.
-    if (!isMached(e.target) && lastSelectedCard !== e.target && !gameIsLocked) {
+    if (!existsClass(e.target, classStrings.match) && lastSelectedCard !== e.target && !gameIsLocked) {
       e.target.className += (` ${classStrings.show} ${classStrings.open}`);
 
       if (lastSelectedCard === undefined) {
