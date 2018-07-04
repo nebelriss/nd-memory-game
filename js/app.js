@@ -13,7 +13,13 @@ const DOMStrings = {
 
 const classStrings = {
   'card': 'card',
-  'fa': 'fa'
+  'fa': 'fa',
+  'show': 'show',
+  'open': 'open',
+  'nomatch': 'no-match',
+  'starEmpty': 'fa-star-o',
+  'star': 'fa-star',
+  'match': 'match'
 }
 
 /*
@@ -55,8 +61,8 @@ function removeLastStar() {
 function resetStars() {
   const emptyStars = document.querySelectorAll(DOMStrings.emptyStar);
   for (let star of emptyStars) {
-    star.classList.remove('fa-star-o');
-    star.classList.add('fa-star');
+    star.classList.remove(classStrings.starEmpty);
+    star.classList.add(classStrings.star);
   }
 }
 
@@ -76,7 +82,7 @@ function drawGameBoard(cards) {
   for (let card of cards) {
     // create li element and add card class
     const li = document.createElement('li');
-    li.classList.add('card');
+    li.classList.add(classStrings.card);
 
     // create icon element and append to li
     const icon = document.createElement('i');
@@ -100,7 +106,7 @@ function isGameWon() {
   const moves = document.querySelector(DOMStrings.moves).textContent;
 
   for (let card of deck.childNodes) {
-    if (!existsClass(card, 'match')) {
+    if (!existsClass(card, classStrings.match)) {
       return false;
     }
   }
@@ -128,7 +134,7 @@ function existsClass(element, className) {
 function isMached(element) {
   // if card has class match return true, else false
   for (let classItem of element.classList) {
-    if (classItem === "match") {
+    if (classItem === classStrings.match) {
       return true;
     }
   }
@@ -137,11 +143,11 @@ function isMached(element) {
 
 function gameController(e) {
   // check if event is from a card
-  if (existsClass(e.target, 'card'))
+  if (existsClass(e.target, classStrings.card))
     {
     // check if the selected card isn't a matched one, or the same card has been clicked twice.
     if (!isMached(e.target) && lastSelectedCard !== e.target && !gameIsLocked) {
-      e.target.className += (' show open');
+      e.target.className += (` ${classStrings.show} ${classStrings.open}`);
 
       if (lastSelectedCard === undefined) {
         // set lastSelectedCard to current card
@@ -154,8 +160,8 @@ function gameController(e) {
 
           // listener for animation end
           e.target.addEventListener('animationend', function _listener() {
-            e.target.classList.remove('show', 'open', 'no-match');
-            lastSelectedCard.classList.remove('show', 'open', 'no-match');
+            e.target.classList.remove(classStrings.show, classStrings.open, classStrings.nomatch);
+            lastSelectedCard.classList.remove(classStrings.show, classStrings.open, classStrings.nomatch);
 
             // reset lastClickedCard
             lastSelectedCard = undefined;
@@ -167,13 +173,13 @@ function gameController(e) {
 
 
           // if cards do not match, turn them face down.
-          e.target.classList.add('no-match');
-          lastSelectedCard.classList.add('no-match');
+          e.target.classList.add(classStrings.nomatch);
+          lastSelectedCard.classList.add(classStrings.nomatch);
 
         } else {
           // if card match, add class match to them.
-          e.target.classList.add('match');
-          lastSelectedCard.classList.add('match');
+          e.target.classList.add(classStrings.match);
+          lastSelectedCard.classList.add(classStrings.match);
 
           // reset lastClickedCard
           lastSelectedCard = undefined;
@@ -220,7 +226,7 @@ function createFullShuffledDeck(cards) {
  * Init
  */
 function initGame() {
-  // init or reset game state
+  // init / reset game state
   resetMoves();
   resetStars();
   lastSelectedCard = undefined;
