@@ -42,7 +42,6 @@ function addMove() {
 
   const newValue = value + 1;
   moves.textContent = newValue;
-  console.log(newValue);
 
   // remove last star
   if (newValue === 10 || newValue === 15 || newValue === 20) {
