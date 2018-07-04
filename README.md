@@ -2,4 +2,4 @@
 
 ## Demo
 
-[Demo](https://nebelriss.github.io/nd-memory-game/index.html)
+[Play](https://nebelriss.github.io/nd-memory-game/index.html)
