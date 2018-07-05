@@ -8,7 +8,8 @@ const DOMStrings = {
   'moves': '.moves',
   'restart': '.restart',
   'star': '.fa-star',
-  'emptyStar': '.fa-star-o'
+  'emptyStar': '.fa-star-o',
+  'time': '.time'
 }
 
 const classStrings = {
@@ -27,6 +28,7 @@ const classStrings = {
  */
 let lastSelectedCard = undefined;
 let gameIsLocked = false;
+let interval;
 
 
 /* 
@@ -93,6 +95,38 @@ function drawGameBoard(cards) {
     fragment.appendChild(li);
   }
   document.querySelector(DOMStrings.deck).appendChild(fragment);
+}
+
+/*
+* Timer functions
+*/
+function startTimer() {
+  interval = setInterval(updateTimerDisplay, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval);
+}
+
+function updateTimerDisplay() {
+  const timeEl = document.querySelector(DOMStrings.time);
+  const currentTime = timeEl.textContent.split(':');
+
+  let minutes = Number(currentTime[0]);
+  let seconds = Number(currentTime[1]) + 1;
+
+  // if seconds is 60 add 1 to minutes and set seconds to zero
+  if (seconds == 60) {
+    minutes = minutes + 1;
+    seconds = 0;
+  }
+
+  // dealing with single digits, so they have a leading 0
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+
+  timeEl.textContent = `${minutes}:${seconds}`;
 }
 
 
@@ -236,6 +270,9 @@ function initGame() {
 
   // draw gameboard with fulldeck
   drawGameBoard(fulldeck);
+
+  // tmp
+  startTimer();
 }
 
 function init() {
