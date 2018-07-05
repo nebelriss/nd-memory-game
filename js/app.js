@@ -160,8 +160,8 @@ function isGameWon() {
   // game is finished
   stopTimer();
 
-  const dlgText = `You needed ${moves} moves, earned 3 Stars and the time was ${time}.`;
-  
+  const dlgText = `${moves} moves, ${stars}, time: ${time}.`;
+
   swal({
     title: "You Won!",
     text: dlgText,
