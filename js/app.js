@@ -109,6 +109,12 @@ function isGameWon() {
       return false;
     }
   }
+  const dlgText = `You needed ${moves} moves. And the time was 33 seconds.`;
+  swal("You Won!", dlgText, "success").then((value) => {
+    if (value) {
+      initGame();
+    }
+  });
 }
 
 function checkIfCardMatch(card1, card2) {
@@ -217,7 +223,6 @@ function initGame() {
   resetMoves();
   resetStars();
   lastSelectedCard = undefined;
-
   // duplicate array, combine it and shuffle it.
   const fulldeck = createFullShuffledDeck(cardFaces);
 
