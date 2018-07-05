@@ -109,8 +109,13 @@ function isGameWon() {
       return false;
     }
   }
-  const dlgText = `You needed ${moves} moves. And the time was 33 seconds.`;
-  swal("You Won!", dlgText, "success").then((value) => {
+  const dlgText = `You needed ${moves} moves, earned 3 Stars and the time was 33 seconds.`;
+  swal({
+    title: "You Won!",
+    text: dlgText,
+    icon: "success",
+    button: "Restart Game",
+  }).then((value) => {
     if (value) {
       initGame();
     }
