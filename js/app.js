@@ -54,7 +54,7 @@ function addMove() {
 function removeLastStar() {
   const lastStar = document.querySelectorAll(DOMStrings.star);
 
-  if (lastStar.length != 0) {
+  if (lastStar.length != 1) {
     lastStar[lastStar.length - 1].className += '-o';
   }
 }
