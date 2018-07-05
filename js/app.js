@@ -109,8 +109,6 @@ function isGameWon() {
       return false;
     }
   }
-
-  window.location = 'winner.html?moves=' + moves;
 }
 
 function checkIfCardMatch(card1, card2) {
