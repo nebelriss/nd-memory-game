@@ -106,6 +106,7 @@ function startTimer() {
 
 function stopTimer() {
   clearInterval(interval);
+  interval = null;
 }
 
 function updateTimerDisplay() {
@@ -137,9 +138,11 @@ function updateTimerDisplay() {
 function isGameWon() {
   const deck = document.querySelector(DOMStrings.deck);
   const moves = document.querySelector(DOMStrings.moves).textContent;
+  const time = document.querySelector(DOMStrings.time).textContent;
 
   for (let card of deck.childNodes) {
     if (!existsClass(card, classStrings.match)) {
+      // game isn't finished
       return false;
     }
   }
@@ -179,8 +182,13 @@ function existsClass(element, className) {
 
 function gameController(e) {
   // check if event is from a card
-  if (existsClass(e.target, classStrings.card))
-    {
+  if (existsClass(e.target, classStrings.card)) {
+
+    // starting timer, if timer exist it will be ignored
+    if (interval == null) {
+      startTimer();
+    }
+
     // check if the selected card isn't a matched one, or the same card has been clicked twice.
     if (!existsClass(e.target, classStrings.match) && lastSelectedCard !== e.target && !gameIsLocked) {
       e.target.className += (` ${classStrings.show} ${classStrings.open}`);
@@ -275,8 +283,8 @@ function initGame() {
   // draw gameboard with fulldeck
   drawGameBoard(fulldeck);
 
-  // tmp
-  startTimer();
+  // init timer
+  document.querySelector(DOMStrings.time).textContent = '0:00';
 }
 
 function init() {
