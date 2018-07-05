@@ -130,6 +130,10 @@ function updateTimerDisplay() {
   timeEl.textContent = `${minutes}:${seconds}`;
 }
 
+function getStarCount() {
+  return document.querySelectorAll(DOMStrings.star).length;
+}
+
 
 /*
  * Game control functions
@@ -139,6 +143,13 @@ function isGameWon() {
   const deck = document.querySelector(DOMStrings.deck);
   const moves = document.querySelector(DOMStrings.moves).textContent;
   const time = document.querySelector(DOMStrings.time).textContent;
+  let stars = getStarCount();
+
+  if (stars > 1) {
+    stars += ' stars';
+  } else {
+    stars += ' star';
+  }
 
   for (let card of deck.childNodes) {
     if (!existsClass(card, classStrings.match)) {
