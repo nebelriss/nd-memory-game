@@ -143,7 +143,11 @@ function isGameWon() {
       return false;
     }
   }
-  const dlgText = `You needed ${moves} moves, earned 3 Stars and the time was 33 seconds.`;
+  // game is finished
+  stopTimer();
+
+  const dlgText = `You needed ${moves} moves, earned 3 Stars and the time was ${time}.`;
+  
   swal({
     title: "You Won!",
     text: dlgText,
