@@ -105,6 +105,8 @@ h3 span {
  */
 
 .score-panel {
+  display: flex;
+  justify-content: space-between;
   text-align: left;
   width: 345px;
   margin-bottom: 10px;
@@ -123,7 +125,6 @@ h3 span {
 }
 
 .score-panel .restart {
-  float: right;
   cursor: pointer;
 }
 
