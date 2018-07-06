@@ -49,9 +49,86 @@ h3 span {
  * Styles for the deck of cards
  */
 
+ @media screen and (min-width: 660px) {
+   .deck {
+     width: 660px;
+     min-height: 680px;
+   }
+   .deck .card {
+     height: 125px;
+     width: 125px;
+   }
+   .score-panel {
+     justify-content: space-between;
+   }
+ }
+
+ @media screen and (max-width: 659px) {
+  .deck {
+    width: 95%;
+    min-height: 680px;
+  }
+  .deck .card {
+    height: 115px;
+    width: 115px;
+  }
+}
+
+ @media screen and (max-width: 609px) {
+  .deck {
+    min-height: 520px;
+  }
+  .deck .card {
+    height: 103px;
+    width: 103px;
+  }
+  .score-panel {
+    width: 345px;
+  }
+}
+
+ @media screen and (max-width: 551px) {
+  .deck {
+    min-height: 500px;
+  }
+  .deck .card {
+    height: 92px;
+    width: 92px;
+  }
+}
+
+ @media screen and (max-width: 477px) {
+  .deck {
+    min-height: 420px;
+  }
+  .deck .card {
+    height: 78px;
+    width: 78px;
+  }
+  .score-panel {
+    font-size: 0.8em;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 409px) {
+  .deck {
+    min-height: 360px;
+  }
+  .deck .card {
+    height: 65px;
+    width: 65px;
+  }
+}
+
+ @media screen and (max-width: 356px) {   
+   .deck .card {
+     height: 55px;
+     width: 55px;
+   }
+ } 
+
 .deck {
-  width: 660px;
-  min-height: 680px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   padding: 32px;
   border-radius: 10px;
@@ -64,8 +141,6 @@ h3 span {
 }
 
 .deck .card {
-  height: 125px;
-  width: 125px;
   background: #2e3d49;
   font-size: 0;
   color: #ffffff;
@@ -106,7 +181,6 @@ h3 span {
 
 .score-panel {
   display: flex;
-  justify-content: space-between;
   text-align: left;
   width: 345px;
   margin-bottom: 10px;
