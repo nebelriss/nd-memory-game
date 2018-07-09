@@ -193,6 +193,9 @@ h3 span {
    height: 115px;
    width: 115px;
  }
+ .score-panel {
+   justify-content: space-between;
+  }
 }
 
 @media screen and (max-width: 609px) {
