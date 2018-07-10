@@ -281,6 +281,7 @@ function initGame() {
   // init / reset game state
   resetMoves();
   resetStars();
+  stopTimer();
   lastSelectedCard = undefined;
   // duplicate array, combine it and shuffle it.
   const fulldeck = createFullShuffledDeck(cardFaces);
