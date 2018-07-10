@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * global vars
  */
@@ -68,7 +70,7 @@ function resetStars() {
 }
 
 function clearGameBoard() {
-  deck = document.querySelector(DOMStrings.deck);
+  const deck = document.querySelector(DOMStrings.deck);
 
   while (deck.firstChild) {
     deck.removeChild(deck.firstChild);
