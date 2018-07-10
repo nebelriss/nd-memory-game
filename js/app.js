@@ -184,8 +184,11 @@ function checkIfCardMatch(card1, card2) {
 function existsClass(element, className) {
   // if card has class match return true, else false
   for (let classItem of element.classList) {
-    return classItem === className ?  true :  false;
+    if (classItem === className) {
+      return true;
+    }
   }
+  return false;
 }
 
 function gameController(e) {
